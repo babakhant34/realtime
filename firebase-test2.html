@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+	  	var config = {
+	    apiKey: "AIzaSyB5aYIvjQa82_Db8_T2zoNmSDLJrhIgyEE",
+	    authDomain: "babakhant-65536.firebaseapp.com",
+	    databaseURL: "https://babakhant-65536.firebaseio.com",
+	    storageBucket: "babakhant-65536.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+  </script>
+</head>
+<body>
+<input id="email" disabled="true" />  
+<br><br><br>
+<input type="text" id="1" /><a href="#" onclick="insert(1);">no 1</a> <a href="#" onclick="getUserEmail(1);">getUserEmail 1</a>
+<br><br><br>
+<input type="text" id="2" /><a href="#" onclick="insert(2);">no 2</a><a href="#" onclick="getUserEmail(2);">getUserEmail 2</a>
+<br><br><br>
+<input type="text" id="3" /><a href="#" onclick="insert(3);">no 3</a><a href="#" onclick="getUserEmail(3);">getUserEmail 3</a>
+<br><br><br>
+<input type="text" id="4" /><a href="#" onclick="insert(4);">no 4</a><a href="#" onclick="getUserEmail(4);">getUserEmail 4</a>
+<br><br><br>
+<input type="text" id="5" /><a href="#" onclick="insert(5);">no 5</a><a href="#" onclick="getUserEmail(5);">getUserEmail 5</a>
+<br><br><br>
+<a href="#" onclick="testIncrement('x');">Test Increment</a>
+<br><br><br>
+<a href="#" onclick="testRealTimeData();"> Test Real Time </a>
+<br><br><br>
+
+<input type="text" id="txtChat" />
+<a href="#" onclick="testPush(1);"> Test Push 1 &nbsp; </a><a href="#" onclick="testPush(2);"> Test Push 2 &nbsp; </a><a href="#" onclick="testPush(3);"> Test Push 3 &nbsp; </a>
+<br><br><br>
+<div id="texts">
+
+
+</div>
+
+<script>
+
+	var myChat = new Firebase("https://babakhant-65536.firebaseio.com/");
+
+	function insert(userId){
+		var userId = userId;
+		var name = $('#'+userId).val();
+		firebase.database().ref('users/' + userId).set({
+    		username: name,
+    		email: name+"email"
+  		});
+  			
+
+	}
+
+	function getUserEmail(userId){
+		firebase.database().ref('users/' + userId).on('value', function(snapshot) {
+	  		var email = snapshot.val().email;
+	  		console.log(email);
+	  		$('#email').val(email);
+		});
+	}
+
+	function testIncrement(userId){
+		//firebase.database().ref('chat').set({index:1});
+		firebase.database().ref('chat').on('value',function(snapshot){
+			console.log(snapshot.val().index);
+			var index = snapshot.val().index;
+			if(!snapshot.val().index || index==NaN){
+				//firebase.database().ref('chat').set({index:1});
+				//firebase.database().ref('chat').set({index:index+1});
+			}else{
+				//firebase.database().ref('chat').set({index:index+1});
+			}
+		});
+		// var t = myChat.on('value', function(dataSnapshot) {
+		// });
+	}
+
+	function testRealTimeData(){
+		myChat.on("value", function(snapshot) {
+		  console.log(snapshot.val());
+		}, function (errorObject) {
+		  console.log("The read failed: " + errorObject.code);
+		});
+	}
+
+	function testPush(userId){
+		var txt = $('#txtChat').val();
+		myChat.push().set({
+			text : txt,
+			userId : userId
+	});
+
+	}
+
+
+$(document).ready(function() {
+    myChat.on("child_added", function(snapshot, prevChildKey) {
+	  	var newPost = snapshot.val();
+		console.log("username " + newPost.text);
+		//console.log("index " + newPost);
+		console.log("Previous Post ID: " + prevChildKey);
+		$('#texts').append("<br>"+newPost.text);
+		// var htmls = $('#texts').html();
+		// htmls += "<br>"+newPost.text;
+		// $('#texts').html(htmls);
+		//htmls.html(newPost.text);
+	});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+  <link href="style.css" rel="stylesheet"/>
+  
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        
+
+         <link rel="stylesheet" type="text/css" href="jQKeyboard.css">
+        <script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script type="text/javascript" src="jQKeyboard.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                var keyboard = {
+                    'layout': [
+                        [
+                            [
+                                ['`', '`', 192, 0, true], ['1', '1', 49, 0, false], ['2', '2', 50, 0, false], ['3', '3', 51, 0, false], ['4', '4', 52, 0, false], ['5', '5', 53, 0, false], ['6', '6', 54, 0, false], 
+                                ['7', '7', 55, 0, false], ['8', '8', 56, 0, false], ['9', '9', 57, 0, false], ['0', '0', 48, 0, false], ['-', '-', 189, 0, false], ['=', '=', 187, 0, false],
+                                ['q', 'q', 81, 0, true], ['w', 'w', 87, 0, false], ['e', 'e', 69, 0, false], ['r', 'r', 82, 0, false], ['t', 't', 84, 0, false], ['y', 'y', 89, 0, false], ['u', 'u', 85, 0, false], 
+                                ['i', 'i', 73, 0, false], ['o', 'o', 79, 0, false], ['p', 'p', 80, 0, false], ['[', '[', 219, 0, false], [']', ']', 221, 0, false], ['&#92;', '\\', 220, 0, false],
+                                ['a', 'a', 65, 0, true], ['s', 's', 83, 0, false], ['d', 'd', 68, 0, false], ['f', 'f', 70, 0, false], ['g', 'g', 71, 0, false], ['h', 'h', 72, 0, false], ['j', 'j', 74, 0, false], 
+                                ['k', 'k', 75, 0, false], ['l', 'l', 76, 0, false], [';', ';', 186, 0, false], ['&#39;', '\'', 222, 0, false], ['Enter', '13', 13, 3, false],
+                                ['Shift', '16', 16, 2, true], ['z', 'z', 90, 0, false], ['x', 'x', 88, 0, false], ['c', 'c', 67, 0, false], ['v', 'v', 86, 0, false], ['b', 'b', 66, 0, false], ['n', 'n', 78, 0, false], 
+                                ['m', 'm', 77, 0, false], [',', ',', 188, 0, false], ['.', '.', 190, 0, false], ['/', '/', 191, 0, false], ['Shift', '16', 16, 2, false],
+                                ['Bksp', '8', 8, 3, true], ['Space', '32', 32, 12, false], ['Clear', '46', 46, 3, false], ['Cancel', '27', 27, 3, false]
+                            ]
+                        ]
+                    ]
+                }
+                $('input.jQKeyboard').initKeypad({'keyboardLayout': keyboard});
+            });
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+    var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+        </script>
+ <!-- 
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+       <script src="jq/development/built/jqkeyboard.js"></script>
+        <script src="jq/layouts/jqk.layout.en-bg.js"></script>
+        
+<link rel="stylesheet" href="jq/themes/light/jqkeyboard.css">
+<link rel="stylesheet" href="jq/development/css/jqkeyboard.css">-->
+<!--
+
+<link rel="stylesheet" href="jq/development/css/style.css">
+  <script   src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"   integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE="   crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="jq/development/built/jqkeyboard.js" > </script>
+  -->
+
+  <script>
+	  	var config = {
+	    apiKey: "AIzaSyB5aYIvjQa82_Db8_T2zoNmSDLJrhIgyEE",
+	    authDomain: "babakhant-65536.firebaseapp.com",
+	    databaseURL: "https://babakhant-65536.firebaseio.com",
+	    storageBucket: "babakhant-65536.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+  </script>
+</head>
+<body>
+<table class="table" id="register">  
+	<tr>	
+		<td>
+		</td>
+		<td>
+			<input type="text" class="form-control" id="email" placeholder="Email"></input>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		</td>	
+		<td>
+		<input type="password" class="form-control" id="password" placeholder="Password"/>
+		</td>
+
+	</tr>
+	<tr>
+		<td>
+
+		</td>		
+		<td>
+			<input type="submit" class="btn btn-primary" value="Register" id="regbtn"></input>
+		</td>
+		<td>
+			<input type="submit" class="btn btn-primary" value="Login" id="loginbtn"></input>
+		</td>
+	</tr>
+	</table>
+<table class="table" id="conversation">
+	<tr>
+		<td></td>
+		<td>
+						<input type="submit" class="btn alert-dnager" value="Logout" id="logoutbtn"></input>
+		</td>
+	</tr>
+	<tr>	
+		<td colspan="2">
+			<div id="chat" width="100%">
+				<ul id="text" width="100%">
+
+				</ul>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="text" class="form-control jQKeyboard" id="txt"/>
+		</td>
+		<td>
+			<a class="btn btn-primary" id="write"><div class="glyphicon glyphicon-pencil"></div></a>
+		</td>
+	</tr>
+<tr>
+
+	<td colspan="2">
+		<!--<p id="demo">Click the button to get your position.</p><button onclick="getLocation();">Try It</button>
+		<div id="mapholder"></div>-->
+	</td>
+</tr>
+</table>
+<script>
+	var userId = 1;
+	var conversationId = "1";
+	var users = {};
+	var authClient = NaN;
+	
+	//var date = "13-6-2016";
+	var currdate = new Date();
+	var date= currdate.getDate()+'-'+(currdate.getMonth()+ 1) +'-'+ currdate.getFullYear();
+	var myChat = new Firebase("https://babakhant-65536.firebaseio.com/"+conversationId+"/"+date);
+	 $(document).ready(function(){
+	 	getUserInfo();
+	 	register();
+	 	$('#conversation').hide();
+		// authClient = new FirebaseSimpleLogin(myChat, function(error, user) {
+		//   if (error) {
+		//     alert(error);
+		//     return;
+		//   }
+		//   if (user) {
+		//     doLogin(user);
+		//   } else {
+		//     showLoginBox();
+		//   }
+		// });
+		console.log(firebase);
+	});
+
+	$('#write').click(function(){
+		saveData();
+	});
+
+	$('#txt').keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			saveData();
+		}
+	});
+
+	function saveData(){
+		var enteredValue = $('#txt').val();
+		firebase.database().ref(conversationId+"/"+date).push({
+			text : enteredValue,
+			userId : userId
+		});
+		$('#txt').val('');
+	}
+
+	function getUserProfile(userId){
+		//return $('#'+userId).html();
+		return $('#1').html();
+	}
+	function register() {
+  		$("#regbtn").on("click", function() {
+    	var email = $("#email").val();
+    	var password = $("#password").val();
+    	
+
+    	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  		
+  			var errorCode = error.code;
+  			var errorMessage = error.message;
+  			console.log(errorCode);
+  			console.log(errorMessage);
+	});
+  });
+}
+function doLogin(user){
+	console.log(user.email);
+}
+function showLoginBox() {
+	$("#loginbtn").on("click", function() {
+		console.log("in onclick");
+	firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+
+		});
+	 });
+  	console.log("in show login");
+  	register();
+}
+function loadChat(){
+	console.log("in load chat");
+	firebase.database().ref(conversationId+"/"+date).limitToLast(50).on("child_added", function(snapshot, prevChildKey) {
+		console.log("in listener");
+		var newPost = snapshot.val();
+	  	var $cont = $('#text');
+	  	if(newPost.userId==userId){
+	  		$cont.append("<div style='display: block; width: 100%; padding:10px; float:none;'><div style='float:right;'>"+"<li class='btn btn-info' id="+prevChildKey+">"+newPost.text+"</li> me: "+getUserProfile(newPost.userId).toString()+"</div><br><br></div>");
+	  	}else{
+			$cont.append("<div style='display: block; width: 100%; padding:10px; float:none;'><div style='float:left;'>"+newPost.userId+ " :"+getUserProfile(newPost.userId).toString()+"<li class='btn btn-info' id="+prevChildKey+">"+newPost.text+"</li> </div><br><br></div>");
+
+		}
+		$cont[0].scrollTop = $cont[0].scrollHeight;
+		var num = $("div").length;
+		if(num > 50){
+			$('#text div:first').remove();			
+		}
+	});
+}
+
+function loadLogout(){
+	$("#logoutbtn").on("click", function() {
+		console.log("in logout click");
+		firebase.auth().signOut().then(function() {
+  			$('#conversation').hide();
+  			$('#register').show();
+		}, function(error) {
+  			alert(error);
+		});
+	 });
+  	
+}
+function getUserInfo(){
+	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	  	$('#register').hide();
+	  	$('#conversation').show();
+	  	console.log(user.email);
+	  	console.log(user.uid);
+	  	// name = user.displayName;
+  		// email = user.email;
+  		// photoUrl = user.photoURL;
+	    userId = user.email;
+	    loadChat();
+	    loadLogout();
+	  } else {
+	    showLoginBox();
+
+	  }
+	});
+}
+
+</script>
+	<div id="1" class="hd"><img src="1.png" id="1s" width="40px" height="40px" style="margin: 0; padding: 0; border-radius: 200px;" /> </div>
+</body>

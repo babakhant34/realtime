@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+</head>
+<body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<a href="#" onclick="writeUserData(1,'test','test@test');" value="sumit" >SET</a> 
+<a href="#" onclick="getUserData(1);" value="sumit" >GET</a> 
+<script>
+
+	// function authHandler(error, authData) {
+	//   if (error) {
+	//     console.log("Login Failed!", error);
+	//   } else {
+	//     console.log("Authenticated successfully with payload:", authData);
+	//   }
+	// }
+	// function authDataCallback(authData) {
+	//   if (authData) {
+	//     console.log("User " + authData.uid + " is logged in with " + authData.provider);
+	//   } else {
+	//     console.log("User is logged out");
+	//   }
+	// }
+	// Register the callback to be fired every time auth state changes
+	// var ref = new Firebase("https://babakhant-65536.firebaseio.com");
+	// ref.authWithPassword({
+	//   email    : 'aungkhant94@gmail.com',
+	//   password : 'passaungkhant94'
+	// }, authHandler);
+
+	// ref.onAuth(authDataCallback);
+
+
+    var myFirebaseRef = new Firebase("https://babakhant-65536.firebaseio.com/");
+    myFirebaseRef.set({
+      title: "Hello World!",
+      author: "Firebase",
+      location: {
+        city: "San Francisco",
+        state: "California",
+        zip: 94103
+      }
+    });
+
+
+// var ref.auth("AUTH_TOKEN", function(error, result) {
+//   if (error) {
+//     console.log("Authentication Failed!", error);
+//   } else {
+//     console.log("Authenticated successfully with payload:", result.auth);
+//     console.log("Auth expires at:", new Date(result.expires * 1000));
+//   }
+// });
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB5aYIvjQa82_Db8_T2zoNmSDLJrhIgyEE",
+    authDomain: "babakhant-65536.firebaseapp.com",
+    databaseURL: "https://babakhant-65536.firebaseio.com",
+    storageBucket: "babakhant-65536.appspot.com",
+  };
+  firebase.initializeApp(config);
+  function writeUserData(userId, name, email) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email
+  });
+}
+
+function getUserData(userId){
+	firebase.database().ref('users/' + userId).on('value', function(snapshot) {
+  		//updateStarCount(postElement, snapshot.val());
+  		console.log(snapshot.val().email)
+	});
+	// var a = myFirebaseRef.child('users/'+userId).on("value", function(snapshot) {
+ // 	 console.log(snapshot.val());
+	// });
+	myFirebaseRef.child("location").on("value", function(snapshot) {
+ 	 console.log(snapshot.val().state);  // Alerts "San Francisco"
+	});
+
+	
+}	
+
+
+</script>
+</body>
+</html>

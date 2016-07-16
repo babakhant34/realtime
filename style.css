@@ -1,0 +1,23 @@
+#chat{
+	float:right;
+  height: 80%;
+  width:100%; 
+  padding:3px; 
+   background:#f0f0f0;
+
+}
+#text{
+	height:500px;
+   	overflow:auto;
+    background:#fff;
+	overflow-y:auto;
+}
+
+#user-icon{
+	display: block;
+	border-radius: 200px;
+}
+.hd{
+	display: none;
+}
+
